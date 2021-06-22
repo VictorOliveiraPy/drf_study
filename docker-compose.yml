@@ -1,0 +1,27 @@
+version: '3.8'
+
+services: 
+    study:
+        build: .
+        command: python manage.py runserver 0.0.0.0:8000
+
+            
+        volumes:
+            - ./:/code
+        ports:
+            - 8000:8000
+        env_file:
+            - .env.dev
+        depends_on: 
+            - study-db
+    study-db:
+        image: postgres:13
+        volumes:
+            - postgres_data:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_USER=study
+            - POSTGRES_PASSWORD=study
+            - POSTGRES_DB=study_dev
+
+volumes:
+    postgres_data:

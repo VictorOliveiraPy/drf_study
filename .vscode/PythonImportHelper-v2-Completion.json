@@ -189,7 +189,7 @@
         "kind": 5,
         "importPath": "drf_study.settings",
         "description": "drf_study.settings",
-        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-=$1bwn=t)w@01l*k7hv1jjf8c0-_%r=&$e-xrjaz&2_sb9n-xe'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = os.environ.get(\"SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = int(os.environ.get(\"DEBUG\", default=0))\nALLOWED_HOSTS = os.environ.get(\"DJANGO_ALLOWED_HOSTS\").split(\" \")\n# Application definition\nINSTALLED_APPS = [",
         "detail": "drf_study.settings",
         "documentation": {}
     },
@@ -198,7 +198,7 @@
         "kind": 5,
         "importPath": "drf_study.settings",
         "description": "drf_study.settings",
-        "peekOfCode": "SECRET_KEY = 'django-insecure-=$1bwn=t)w@01l*k7hv1jjf8c0-_%r=&$e-xrjaz&2_sb9n-xe'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',",
+        "peekOfCode": "SECRET_KEY = os.environ.get(\"SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = int(os.environ.get(\"DEBUG\", default=0))\nALLOWED_HOSTS = os.environ.get(\"DJANGO_ALLOWED_HOSTS\").split(\" \")\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',",
         "detail": "drf_study.settings",
         "documentation": {}
     },
@@ -207,7 +207,7 @@
         "kind": 5,
         "importPath": "drf_study.settings",
         "description": "drf_study.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
+        "peekOfCode": "DEBUG = int(os.environ.get(\"DEBUG\", default=0))\nALLOWED_HOSTS = os.environ.get(\"DJANGO_ALLOWED_HOSTS\").split(\" \")\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
         "detail": "drf_study.settings",
         "documentation": {}
     },
@@ -216,7 +216,7 @@
         "kind": 5,
         "importPath": "drf_study.settings",
         "description": "drf_study.settings",
-        "peekOfCode": "ALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'rest_framework',",
+        "peekOfCode": "ALLOWED_HOSTS = os.environ.get(\"DJANGO_ALLOWED_HOSTS\").split(\" \")\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'rest_framework',",
         "detail": "drf_study.settings",
         "documentation": {}
     },
@@ -261,7 +261,7 @@
         "kind": 5,
         "importPath": "drf_study.settings",
         "description": "drf_study.settings",
-        "peekOfCode": "WSGI_APPLICATION = 'drf_study.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/3.2/ref/settings/#databases\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': BASE_DIR / 'db.sqlite3',\n    }\n}\n# Password validation",
+        "peekOfCode": "WSGI_APPLICATION = 'drf_study.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/3.2/ref/settings/#databases\nDATABASES = {\n    \"default\": {\n        \"ENGINE\": os.environ.get(\"SQL_ENGINE\", \"django.db.backends.sqlite3\"),\n        \"NAME\": os.environ.get(\"SQL_DATABASE\", os.path.join(\n            BASE_DIR, \"db.sqlite3\")\n                               ),\n        \"USER\": os.environ.get(\"SQL_USER\", \"user\"),",
         "detail": "drf_study.settings",
         "documentation": {}
     },
@@ -270,7 +270,7 @@
         "kind": 5,
         "importPath": "drf_study.settings",
         "description": "drf_study.settings",
-        "peekOfCode": "DATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': BASE_DIR / 'db.sqlite3',\n    }\n}\n# Password validation\n# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators\nAUTH_PASSWORD_VALIDATORS = [\n    {",
+        "peekOfCode": "DATABASES = {\n    \"default\": {\n        \"ENGINE\": os.environ.get(\"SQL_ENGINE\", \"django.db.backends.sqlite3\"),\n        \"NAME\": os.environ.get(\"SQL_DATABASE\", os.path.join(\n            BASE_DIR, \"db.sqlite3\")\n                               ),\n        \"USER\": os.environ.get(\"SQL_USER\", \"user\"),\n        \"PASSWORD\": os.environ.get(\"SQL_PASSWORD\", \"password\"),\n        \"HOST\": os.environ.get(\"SQL_HOST\", \"localhost\"),\n        \"PORT\": os.environ.get(\"SQL_PORT\", \"5432\"),",
         "detail": "drf_study.settings",
         "documentation": {}
     },
