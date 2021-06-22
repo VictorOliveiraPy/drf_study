@@ -42,6 +42,22 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -59,6 +75,47 @@
         "documentation": {}
     },
     {
+        "label": "pytest",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pytest",
+        "description": "pytest",
+        "detail": "pytest",
+        "documentation": {}
+    },
+    {
+        "label": "Study",
+        "importPath": "drf_study.study.models",
+        "description": "drf_study.study.models",
+        "isExtraImport": true,
+        "detail": "drf_study.study.models",
+        "documentation": {}
+    },
+    {
+        "label": "Study",
+        "importPath": "drf_study.study.models",
+        "description": "drf_study.study.models",
+        "isExtraImport": true,
+        "detail": "drf_study.study.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomUser",
+        "importPath": "drf_study.study.models",
+        "description": "drf_study.study.models",
+        "isExtraImport": true,
+        "detail": "drf_study.study.models",
+        "documentation": {}
+    },
+    {
+        "label": "StudySerializer",
+        "importPath": "drf_study.study.serializers",
+        "description": "drf_study.study.serializers",
+        "isExtraImport": true,
+        "detail": "drf_study.study.serializers",
+        "documentation": {}
+    },
+    {
         "label": "admin",
         "importPath": "django.contrib",
         "description": "django.contrib",
@@ -72,6 +129,14 @@
         "description": "django.contrib",
         "isExtraImport": true,
         "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "UserAdmin",
+        "importPath": "django.contrib.auth.admin",
+        "description": "django.contrib.auth.admin",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.admin",
         "documentation": {}
     },
     {
@@ -80,6 +145,14 @@
         "description": "django.apps",
         "isExtraImport": true,
         "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "serializers",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
         "documentation": {}
     },
     {
@@ -150,6 +223,60 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "drf_study.study.migrations.0002_study",
+        "description": "drf_study.study.migrations.0002_study",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('study', '0001_initial'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Study',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('title', models.CharField(max_length=150)),",
+        "detail": "drf_study.study.migrations.0002_study",
+        "documentation": {}
+    },
+    {
+        "label": "test_study_model",
+        "kind": 2,
+        "importPath": "drf_study.study.tests.test_study_model",
+        "description": "drf_study.study.tests.test_study_model",
+        "peekOfCode": "def test_study_model():\n    study = Study(\n       title='Docker',\n       description='muito bom',\n       category='Virtualization'\n    )\n    study.save()\n    assert study.title == 'Docker'\n    assert study.description == 'muito bom'\n    assert study.category == 'Virtualization'",
+        "detail": "drf_study.study.tests.test_study_model",
+        "documentation": {}
+    },
+    {
+        "label": "test_valid_study_serializer",
+        "kind": 2,
+        "importPath": "drf_study.study.tests.test_valid_study_serializer",
+        "description": "drf_study.study.tests.test_valid_study_serializer",
+        "peekOfCode": "def test_valid_study_serializer():\n    valid_serializer_data = {\n        \"title\": \"Python\",\n        \"category\": \"linguagem\",\n        \"description\": \"Pythonicodms\"\n    }\n    serializer = StudySerializer(\n        data=valid_serializer_data\n    )\n    assert serializer.is_valid()",
+        "detail": "drf_study.study.tests.test_valid_study_serializer",
+        "documentation": {}
+    },
+    {
+        "label": "test_invalid_study_serializer",
+        "kind": 2,
+        "importPath": "drf_study.study.tests.test_valid_study_serializer",
+        "description": "drf_study.study.tests.test_valid_study_serializer",
+        "peekOfCode": "def test_invalid_study_serializer():\n    invalid_serializer_data = {\n        \"title\": \"Python\",\n        \"category\": \"linguagem\",\n    }\n    serializer = StudySerializer(\n        data=invalid_serializer_data\n    )\n    serializer = StudySerializer(\n        data=invalid_serializer_data",
+        "detail": "drf_study.study.tests.test_valid_study_serializer",
+        "documentation": {}
+    },
+    {
+        "label": "UserAdmin",
+        "kind": 6,
+        "importPath": "drf_study.study.admin",
+        "description": "drf_study.study.admin",
+        "peekOfCode": "class UserAdmin(DefaultUserAdmin):\n    pass\n@admin.register(Study)\nclass StudyAdmin(admin.ModelAdmin):\n    fields = (\n        'title',\n        'category',\n        'description',\n        'created_date',\n        'updated_date'",
+        "detail": "drf_study.study.admin",
+        "documentation": {}
+    },
+    {
+        "label": "StudyAdmin",
+        "kind": 6,
+        "importPath": "drf_study.study.admin",
+        "description": "drf_study.study.admin",
+        "peekOfCode": "class StudyAdmin(admin.ModelAdmin):\n    fields = (\n        'title',\n        'category',\n        'description',\n        'created_date',\n        'updated_date'\n    )\n    list_display = (\n        'title',",
+        "detail": "drf_study.study.admin",
+        "documentation": {}
+    },
+    {
         "label": "StudyConfig",
         "kind": 6,
         "importPath": "drf_study.study.apps",
@@ -163,8 +290,26 @@
         "kind": 6,
         "importPath": "drf_study.study.models",
         "description": "drf_study.study.models",
-        "peekOfCode": "class CustomUser(AbstractUser):\n    pass",
+        "peekOfCode": "class CustomUser(AbstractUser):\n    pass\nclass Study(models.Model):\n    title = models.CharField(max_length=150)\n    category = models.CharField(max_length=180)\n    description = models.TextField()\n    created_date = models.DateTimeField(auto_now_add=True)\n    updated_date = models.DateTimeField(auto_now=True)\n    def __str__(self):\n        return f\"{self.title}\"",
         "detail": "drf_study.study.models",
+        "documentation": {}
+    },
+    {
+        "label": "Study",
+        "kind": 6,
+        "importPath": "drf_study.study.models",
+        "description": "drf_study.study.models",
+        "peekOfCode": "class Study(models.Model):\n    title = models.CharField(max_length=150)\n    category = models.CharField(max_length=180)\n    description = models.TextField()\n    created_date = models.DateTimeField(auto_now_add=True)\n    updated_date = models.DateTimeField(auto_now=True)\n    def __str__(self):\n        return f\"{self.title}\"",
+        "detail": "drf_study.study.models",
+        "documentation": {}
+    },
+    {
+        "label": "StudySerializer",
+        "kind": 6,
+        "importPath": "drf_study.study.serializers",
+        "description": "drf_study.study.serializers",
+        "peekOfCode": "class StudySerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Study\n        fields = [\n            'id',\n            'title',\n            'category',\n            'description'\n        ]\n        read_only_fields = (",
+        "detail": "drf_study.study.serializers",
         "documentation": {}
     },
     {
