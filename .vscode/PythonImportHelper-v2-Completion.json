@@ -100,6 +100,14 @@
         "documentation": {}
     },
     {
+        "label": "Study",
+        "importPath": "drf_study.study.models",
+        "description": "drf_study.study.models",
+        "isExtraImport": true,
+        "detail": "drf_study.study.models",
+        "documentation": {}
+    },
+    {
         "label": "CustomUser",
         "importPath": "drf_study.study.models",
         "description": "drf_study.study.models",
@@ -113,6 +121,15 @@
         "description": "drf_study.study.serializers",
         "isExtraImport": true,
         "detail": "drf_study.study.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
         "documentation": {}
     },
     {
@@ -140,11 +157,43 @@
         "documentation": {}
     },
     {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
         "isExtraImport": true,
-        "detail": "django.apps",
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "rest_framework.response",
+        "description": "rest_framework.response",
+        "isExtraImport": true,
+        "detail": "rest_framework.response",
+        "documentation": {}
+    },
+    {
+        "label": "Http404",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "APIView",
+        "importPath": "rest_framework.views",
+        "description": "rest_framework.views",
+        "isExtraImport": true,
+        "detail": "rest_framework.views",
+        "documentation": {}
+    },
+    {
+        "label": "status",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
         "documentation": {}
     },
     {
@@ -156,11 +205,35 @@
         "documentation": {}
     },
     {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
         "isExtraImport": true,
-        "detail": "django.shortcuts",
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
         "documentation": {}
     },
     {
@@ -186,14 +259,6 @@
         "description": "pathlib",
         "isExtraImport": true,
         "detail": "pathlib",
-        "documentation": {}
-    },
-    {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
         "documentation": {}
     },
     {
@@ -259,6 +324,15 @@
         "documentation": {}
     },
     {
+        "label": "test_add_movie",
+        "kind": 2,
+        "importPath": "drf_study.study.tests.test_views",
+        "description": "drf_study.study.tests.test_views",
+        "peekOfCode": "def test_add_movie(client):\n    study = Study.objects.all()\n    assert len(study) == 0\n    resp = client.post(\n        \"/api/study/\",\n        {\n            \"title\": \"Pythonico\",\n            \"category\": \"Pythonista\",\n            \"description\": \"Python do sucesso\",\n        },",
+        "detail": "drf_study.study.tests.test_views",
+        "documentation": {}
+    },
+    {
         "label": "UserAdmin",
         "kind": 6,
         "importPath": "drf_study.study.admin",
@@ -274,6 +348,15 @@
         "description": "drf_study.study.admin",
         "peekOfCode": "class StudyAdmin(admin.ModelAdmin):\n    fields = (\n        'title',\n        'category',\n        'description',\n        'created_date',\n        'updated_date'\n    )\n    list_display = (\n        'title',",
         "detail": "drf_study.study.admin",
+        "documentation": {}
+    },
+    {
+        "label": "StudyList",
+        "kind": 6,
+        "importPath": "drf_study.study.api",
+        "description": "drf_study.study.api",
+        "peekOfCode": "class StudyList(APIView):\n    def post(self, request, format=None):\n        serializer = StudySerializer(\n            data=request.data\n        )\n        if serializer.is_valid():\n            serializer.save()      \n            return Response(\n                serializer.data,\n                status=status.HTTP_201_CREATED",
+        "detail": "drf_study.study.api",
         "documentation": {}
     },
     {
@@ -310,6 +393,15 @@
         "description": "drf_study.study.serializers",
         "peekOfCode": "class StudySerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Study\n        fields = [\n            'id',\n            'title',\n            'category',\n            'description'\n        ]\n        read_only_fields = (",
         "detail": "drf_study.study.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "drf_study.study.urls",
+        "description": "drf_study.study.urls",
+        "peekOfCode": "urlpatterns = [\n    path(\"api/study/\", StudyList.as_view(), name=\"api/study\"),\n]",
+        "detail": "drf_study.study.urls",
         "documentation": {}
     },
     {
@@ -497,7 +589,7 @@
         "kind": 5,
         "importPath": "drf_study.urls",
         "description": "drf_study.urls",
-        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', include('drf_study.study.urls')),\n]",
         "detail": "drf_study.urls",
         "documentation": {}
     },
