@@ -10,12 +10,19 @@ from .serializers import StudySerializer
 
 
 class StudyList(APIView):
+    def get(self, request, format=None):
+        study = Study.objects.all()
+        serializer = StudySerializer(
+            study, many=True
+        )
+        return Response(serializer.data)
+
     def post(self, request, format=None):
         serializer = StudySerializer(
             data=request.data
         )
         if serializer.is_valid():
-            serializer.save()      
+            serializer.save()
             return Response(
                 serializer.data,
                 status=status.HTTP_201_CREATED

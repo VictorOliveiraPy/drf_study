@@ -389,7 +389,16 @@
         "kind": 2,
         "importPath": "drf_study.study.tests.test_views",
         "description": "drf_study.study.tests.test_views",
-        "peekOfCode": "def test_get_single_study_incorrect_id(client):\n    resp = client.get(\"/api/study/buuh/\")\n    assert resp.status_code == 404",
+        "peekOfCode": "def test_get_single_study_incorrect_id(client):\n    resp = client.get(\"/api/study/buuh/\")\n    assert resp.status_code == 404\n@pytest.mark.django_db\ndef test_get_all_study(client, add_study):\n    study_one = add_study(\n        title='Django',\n        category='Framework',\n        description='Web'\n    )",
+        "detail": "drf_study.study.tests.test_views",
+        "documentation": {}
+    },
+    {
+        "label": "test_get_all_study",
+        "kind": 2,
+        "importPath": "drf_study.study.tests.test_views",
+        "description": "drf_study.study.tests.test_views",
+        "peekOfCode": "def test_get_all_study(client, add_study):\n    study_one = add_study(\n        title='Django',\n        category='Framework',\n        description='Web'\n    )\n    study_two = add_study(\n        \"Django Framework\",\n        'Framework',\n        'Django best framework'",
         "detail": "drf_study.study.tests.test_views",
         "documentation": {}
     },
@@ -416,7 +425,7 @@
         "kind": 6,
         "importPath": "drf_study.study.api",
         "description": "drf_study.study.api",
-        "peekOfCode": "class StudyList(APIView):\n    def post(self, request, format=None):\n        serializer = StudySerializer(\n            data=request.data\n        )\n        if serializer.is_valid():\n            serializer.save()      \n            return Response(\n                serializer.data,\n                status=status.HTTP_201_CREATED",
+        "peekOfCode": "class StudyList(APIView):\n    def get(self, request, format=None):\n        study = Study.objects.all()\n        serializer = StudySerializer(\n            study, many=True\n        )\n        return Response(serializer.data)\n    def post(self, request, format=None):\n        serializer = StudySerializer(\n            data=request.data",
         "detail": "drf_study.study.api",
         "documentation": {}
     },

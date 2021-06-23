@@ -76,3 +76,22 @@ def test_get_single_study(client, add_study):
 def test_get_single_study_incorrect_id(client):
     resp = client.get("/api/study/buuh/")
     assert resp.status_code == 404
+
+@pytest.mark.django_db
+def test_get_all_study(client, add_study):
+
+    study_one = add_study(
+        title='Django',
+        category='Framework',
+        description='Web'
+    )
+    study_two = add_study(
+        "Django Framework",
+        'Framework',
+        'Django best framework'
+    )
+    resp = client.get(
+        reverse('api/study')
+    )
+    assert resp.data[0]["title"] == study_one.title
+    assert resp.data[1]["title"] == study_two.title
