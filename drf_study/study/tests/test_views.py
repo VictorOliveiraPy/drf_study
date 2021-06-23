@@ -59,7 +59,7 @@ def test_add_invalid_json_keys(client):
     study = Study.objects.all()
     assert len(study) == 0
 
-
+@pytest.mark.django_db
 def test_get_single_study(client):
     study = Study.objects.create(
         title='Docker',
@@ -69,3 +69,8 @@ def test_get_single_study(client):
     resp = client.get(f"/api/study/{study.id}/")
     assert resp.status_code == 200
     assert resp.data["title"] == "Docker"
+
+
+def test_get_single_study_incorrect_id(client):
+    resp = client.get("/api/study/buuh/")
+    assert resp.status_code == 404

@@ -24,3 +24,16 @@ class StudyList(APIView):
             serializer.errors,
             status=status.HTTP_400_BAD_REQUEST
         )
+
+
+class StudyDetail(APIView):
+    def get_object(self, pk):
+        try:
+            return Study.objects.get(pk=pk)
+        except Study.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        study = self.get_object(pk)
+        serializer = StudySerializer(study)
+        return Response(serializer.data)

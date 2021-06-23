@@ -333,6 +333,42 @@
         "documentation": {}
     },
     {
+        "label": "test_add_invalid_json",
+        "kind": 2,
+        "importPath": "drf_study.study.tests.test_views",
+        "description": "drf_study.study.tests.test_views",
+        "peekOfCode": "def test_add_invalid_json(client):\n    study = Study.objects.all()\n    assert len(study) == 0\n    resp = client.post(\n        \"/api/study/\",\n        {},\n        content_type=\"application/json\"\n    )\n    assert resp.status_code == 400\n    study = Study.objects.all()",
+        "detail": "drf_study.study.tests.test_views",
+        "documentation": {}
+    },
+    {
+        "label": "test_add_invalid_json_keys",
+        "kind": 2,
+        "importPath": "drf_study.study.tests.test_views",
+        "description": "drf_study.study.tests.test_views",
+        "peekOfCode": "def test_add_invalid_json_keys(client):\n    study = Study.objects.all()\n    assert len(study) == 0\n    resp = client.post(\n        \"/api/study/\",\n        {\n            \"title\": \"Python\",\n            \"category\": \"loop\"\n            },\n        content_type=\"application/json\"",
+        "detail": "drf_study.study.tests.test_views",
+        "documentation": {}
+    },
+    {
+        "label": "test_get_single_study",
+        "kind": 2,
+        "importPath": "drf_study.study.tests.test_views",
+        "description": "drf_study.study.tests.test_views",
+        "peekOfCode": "def test_get_single_study(client):\n    study = Study.objects.create(\n        title='Docker',\n        category='Virtualization',\n        description=\"comandos mais utilizados\"\n    )\n    resp = client.get(f\"/api/study/{study.id}/\")\n    assert resp.status_code == 200\n    assert resp.data[\"title\"] == \"Docker\"\ndef test_get_single_study_incorrect_id(client):",
+        "detail": "drf_study.study.tests.test_views",
+        "documentation": {}
+    },
+    {
+        "label": "test_get_single_study_incorrect_id",
+        "kind": 2,
+        "importPath": "drf_study.study.tests.test_views",
+        "description": "drf_study.study.tests.test_views",
+        "peekOfCode": "def test_get_single_study_incorrect_id(client):\n    resp = client.get(\"/api/study/buuh/\")\n    assert resp.status_code == 404",
+        "detail": "drf_study.study.tests.test_views",
+        "documentation": {}
+    },
+    {
         "label": "UserAdmin",
         "kind": 6,
         "importPath": "drf_study.study.admin",
@@ -356,6 +392,15 @@
         "importPath": "drf_study.study.api",
         "description": "drf_study.study.api",
         "peekOfCode": "class StudyList(APIView):\n    def post(self, request, format=None):\n        serializer = StudySerializer(\n            data=request.data\n        )\n        if serializer.is_valid():\n            serializer.save()      \n            return Response(\n                serializer.data,\n                status=status.HTTP_201_CREATED",
+        "detail": "drf_study.study.api",
+        "documentation": {}
+    },
+    {
+        "label": "StudyDetail",
+        "kind": 6,
+        "importPath": "drf_study.study.api",
+        "description": "drf_study.study.api",
+        "peekOfCode": "class StudyDetail(APIView):\n    def get_object(self, pk):\n        try:\n            return Study.objects.get(pk=pk)\n        except Study.DoesNotExist:\n            raise Http404\n    def get(self, request, pk, format=None):\n        study = self.get_object(pk)\n        serializer = StudySerializer(study)\n        return Response(serializer.data)",
         "detail": "drf_study.study.api",
         "documentation": {}
     },
@@ -400,7 +445,7 @@
         "kind": 5,
         "importPath": "drf_study.study.urls",
         "description": "drf_study.study.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"api/study/\", StudyList.as_view(), name=\"api/study\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path(\"api/study/\", StudyList.as_view(), name=\"api/study\"),\n    path(\"api/study/<int:pk>/\", StudyDetail.as_view(),\n         name=\"api/study\")\n]",
         "detail": "drf_study.study.urls",
         "documentation": {}
     },
