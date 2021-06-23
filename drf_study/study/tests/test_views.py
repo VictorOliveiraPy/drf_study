@@ -1,5 +1,7 @@
 import json
 
+from django.urls import reverse
+
 import pytest
 
 from drf_study.study.models import Study
@@ -10,8 +12,8 @@ def test_add_movie(client):
     study = Study.objects.all()
     assert len(study) == 0
 
-    resp = client.post(
-        "/api/study/",
+    resp = client.post(reverse(
+        "api/study"),
         {
             "title": "Pythonico",
             "category": "Pythonista",
@@ -30,8 +32,8 @@ def test_add_invalid_json(client):
     study = Study.objects.all()
     assert len(study) == 0
 
-    resp = client.post(
-        "/api/study/",
+    resp = client.post(reverse(
+        "api/study"),
         {},
         content_type="application/json"
     )
@@ -46,8 +48,8 @@ def test_add_invalid_json_keys(client):
     study = Study.objects.all()
     assert len(study) == 0
 
-    resp = client.post(
-        "/api/study/",
+    resp = client.post(reverse(
+        "api/study"),
         {
             "title": "Python",
             "category": "loop"
@@ -60,8 +62,8 @@ def test_add_invalid_json_keys(client):
     assert len(study) == 0
 
 @pytest.mark.django_db
-def test_get_single_study(client):
-    study = Study.objects.create(
+def test_get_single_study(client, add_study):
+    study = add_study(
         title='Docker',
         category='Virtualization',
         description="comandos mais utilizados"

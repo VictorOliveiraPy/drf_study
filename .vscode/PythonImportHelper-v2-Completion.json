@@ -108,6 +108,14 @@
         "documentation": {}
     },
     {
+        "label": "Study",
+        "importPath": "drf_study.study.models",
+        "description": "drf_study.study.models",
+        "isExtraImport": true,
+        "detail": "drf_study.study.models",
+        "documentation": {}
+    },
+    {
         "label": "CustomUser",
         "importPath": "drf_study.study.models",
         "description": "drf_study.study.models",
@@ -130,6 +138,38 @@
         "importPath": "json",
         "description": "json",
         "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "reverse",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
         "documentation": {}
     },
     {
@@ -213,30 +253,6 @@
         "documentation": {}
     },
     {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "include",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
@@ -297,6 +313,15 @@
         "documentation": {}
     },
     {
+        "label": "add_study",
+        "kind": 2,
+        "importPath": "drf_study.study.tests.conftest",
+        "description": "drf_study.study.tests.conftest",
+        "peekOfCode": "def add_study():\n    def __add_study(title, category, description):\n        study = Study.objects.create(\n            title=title,\n            category=category,\n            description=description,\n        )\n        return study\n    return __add_study",
+        "detail": "drf_study.study.tests.conftest",
+        "documentation": {}
+    },
+    {
         "label": "test_study_model",
         "kind": 2,
         "importPath": "drf_study.study.tests.test_study_model",
@@ -328,7 +353,7 @@
         "kind": 2,
         "importPath": "drf_study.study.tests.test_views",
         "description": "drf_study.study.tests.test_views",
-        "peekOfCode": "def test_add_movie(client):\n    study = Study.objects.all()\n    assert len(study) == 0\n    resp = client.post(\n        \"/api/study/\",\n        {\n            \"title\": \"Pythonico\",\n            \"category\": \"Pythonista\",\n            \"description\": \"Python do sucesso\",\n        },",
+        "peekOfCode": "def test_add_movie(client):\n    study = Study.objects.all()\n    assert len(study) == 0\n    resp = client.post(reverse(\n        \"api/study\"),\n        {\n            \"title\": \"Pythonico\",\n            \"category\": \"Pythonista\",\n            \"description\": \"Python do sucesso\",\n        },",
         "detail": "drf_study.study.tests.test_views",
         "documentation": {}
     },
@@ -337,7 +362,7 @@
         "kind": 2,
         "importPath": "drf_study.study.tests.test_views",
         "description": "drf_study.study.tests.test_views",
-        "peekOfCode": "def test_add_invalid_json(client):\n    study = Study.objects.all()\n    assert len(study) == 0\n    resp = client.post(\n        \"/api/study/\",\n        {},\n        content_type=\"application/json\"\n    )\n    assert resp.status_code == 400\n    study = Study.objects.all()",
+        "peekOfCode": "def test_add_invalid_json(client):\n    study = Study.objects.all()\n    assert len(study) == 0\n    resp = client.post(reverse(\n        \"api/study\"),\n        {},\n        content_type=\"application/json\"\n    )\n    assert resp.status_code == 400\n    study = Study.objects.all()",
         "detail": "drf_study.study.tests.test_views",
         "documentation": {}
     },
@@ -346,7 +371,7 @@
         "kind": 2,
         "importPath": "drf_study.study.tests.test_views",
         "description": "drf_study.study.tests.test_views",
-        "peekOfCode": "def test_add_invalid_json_keys(client):\n    study = Study.objects.all()\n    assert len(study) == 0\n    resp = client.post(\n        \"/api/study/\",\n        {\n            \"title\": \"Python\",\n            \"category\": \"loop\"\n            },\n        content_type=\"application/json\"",
+        "peekOfCode": "def test_add_invalid_json_keys(client):\n    study = Study.objects.all()\n    assert len(study) == 0\n    resp = client.post(reverse(\n        \"api/study\"),\n        {\n            \"title\": \"Python\",\n            \"category\": \"loop\"\n            },\n        content_type=\"application/json\"",
         "detail": "drf_study.study.tests.test_views",
         "documentation": {}
     },
@@ -355,7 +380,7 @@
         "kind": 2,
         "importPath": "drf_study.study.tests.test_views",
         "description": "drf_study.study.tests.test_views",
-        "peekOfCode": "def test_get_single_study(client):\n    study = Study.objects.create(\n        title='Docker',\n        category='Virtualization',\n        description=\"comandos mais utilizados\"\n    )\n    resp = client.get(f\"/api/study/{study.id}/\")\n    assert resp.status_code == 200\n    assert resp.data[\"title\"] == \"Docker\"\ndef test_get_single_study_incorrect_id(client):",
+        "peekOfCode": "def test_get_single_study(client, add_study):\n    study = add_study(\n        title='Docker',\n        category='Virtualization',\n        description=\"comandos mais utilizados\"\n    )\n    resp = client.get(f\"/api/study/{study.id}/\")\n    assert resp.status_code == 200\n    assert resp.data[\"title\"] == \"Docker\"\ndef test_get_single_study_incorrect_id(client):",
         "detail": "drf_study.study.tests.test_views",
         "documentation": {}
     },
