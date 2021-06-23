@@ -425,7 +425,7 @@
         "kind": 6,
         "importPath": "drf_study.study.api",
         "description": "drf_study.study.api",
-        "peekOfCode": "class StudyList(APIView):\n    def get(self, request, format=None):\n        study = Study.objects.all()\n        serializer = StudySerializer(\n            study, many=True\n        )\n        return Response(serializer.data)\n    def post(self, request, format=None):\n        serializer = StudySerializer(\n            data=request.data",
+        "peekOfCode": "class StudyList(APIView):\n    def get(self, request, format=None):\n        study = Study.objects.all()\n        serializer = StudySerializer(\n            study, many=True\n        )\n        return Response(\n            serializer.data\n        )\n    def post(self, request, format=None):",
         "detail": "drf_study.study.api",
         "documentation": {}
     },

@@ -15,7 +15,9 @@ class StudyList(APIView):
         serializer = StudySerializer(
             study, many=True
         )
-        return Response(serializer.data)
+        return Response(
+            serializer.data
+        )
 
     def post(self, request, format=None):
         serializer = StudySerializer(
