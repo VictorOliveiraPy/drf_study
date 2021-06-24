@@ -6,7 +6,7 @@ FROM python:3.9.1-slim-buster
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV DEBUG 1
+ENV DEBUG 0
 ENV SECRET_KEY django-insecure-=$1bwn=t)w@01l*k7hv1jjf8c0-_%r=&$e-xrjaz&2_sb9n-xe
 ENV DJANGO_ALLOWED_HOSTS .herokuapp.com
 
@@ -14,8 +14,11 @@ ENV DJANGO_ALLOWED_HOSTS .herokuapp.com
 ADD . /code
 WORKDIR /code
 
+RUN python manage.py collectstatic --noinput
+
 COPY poetry.lock pyproject.toml /tmp/
 
+# collect static files
 
 RUN pip install poetry
 RUN cd /tmp && poetry export -f requirements.txt --output /tmp/requirements.txt
