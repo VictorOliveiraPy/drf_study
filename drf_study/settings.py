@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
+import dj_database_url
+
+
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,6 +31,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = int(os.environ.get("DEBUG", default=0))
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+
 
 
 # Application definition
@@ -90,6 +94,19 @@ DATABASES = {
         "PORT": os.environ.get("SQL_PORT", "5432"),
     }
 }
+
+
+DATABASE_URL = os.environ.get('DATABASE_URL')
+db_from_env = dj_database_url.config(default=DATABASE_URL, conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+
+if not DEBUG:
+    REST_FRAMEWORK = {
+        "DEFAULT_RENDERER_CLASSES": (
+            "rest_framework.renderers.JSONRenderer",
+        )
+    }
 
 
 # Password validation

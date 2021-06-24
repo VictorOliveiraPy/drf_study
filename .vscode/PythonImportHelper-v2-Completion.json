@@ -278,6 +278,15 @@
         "documentation": {}
     },
     {
+        "label": "dj_database_url",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "dj_database_url",
+        "description": "dj_database_url",
+        "detail": "dj_database_url",
+        "documentation": {}
+    },
+    {
         "label": "get_wsgi_application",
         "importPath": "django.core.wsgi",
         "description": "django.core.wsgi",
@@ -579,6 +588,24 @@
         "importPath": "drf_study.settings",
         "description": "drf_study.settings",
         "peekOfCode": "DATABASES = {\n    \"default\": {\n        \"ENGINE\": os.environ.get(\"SQL_ENGINE\", \"django.db.backends.sqlite3\"),\n        \"NAME\": os.environ.get(\"SQL_DATABASE\", os.path.join(\n            BASE_DIR, \"db.sqlite3\")\n                               ),\n        \"USER\": os.environ.get(\"SQL_USER\", \"user\"),\n        \"PASSWORD\": os.environ.get(\"SQL_PASSWORD\", \"password\"),\n        \"HOST\": os.environ.get(\"SQL_HOST\", \"localhost\"),\n        \"PORT\": os.environ.get(\"SQL_PORT\", \"5432\"),",
+        "detail": "drf_study.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASE_URL",
+        "kind": 5,
+        "importPath": "drf_study.settings",
+        "description": "drf_study.settings",
+        "peekOfCode": "DATABASE_URL = os.environ.get('DATABASE_URL')\ndb_from_env = dj_database_url.config(default=DATABASE_URL, conn_max_age=500)\nDATABASES['default'].update(db_from_env)\nif not DEBUG:\n    REST_FRAMEWORK = {\n        \"DEFAULT_RENDERER_CLASSES\": (\n            \"rest_framework.renderers.JSONRenderer\",\n        )\n    }\n# Password validation",
+        "detail": "drf_study.settings",
+        "documentation": {}
+    },
+    {
+        "label": "db_from_env",
+        "kind": 5,
+        "importPath": "drf_study.settings",
+        "description": "drf_study.settings",
+        "peekOfCode": "db_from_env = dj_database_url.config(default=DATABASE_URL, conn_max_age=500)\nDATABASES['default'].update(db_from_env)\nif not DEBUG:\n    REST_FRAMEWORK = {\n        \"DEFAULT_RENDERER_CLASSES\": (\n            \"rest_framework.renderers.JSONRenderer\",\n        )\n    }\n# Password validation\n# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators",
         "detail": "drf_study.settings",
         "documentation": {}
     },
